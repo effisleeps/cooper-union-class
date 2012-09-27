@@ -12,4 +12,4 @@ My project will work in two phases:
 2. Building a website that will display the above information in an interesting, interactive fashion that both allows the user to become informed socio-politically and provides alternate information to branch out in this information exploration (e.g. using google's Api).
 ```
 Thanks for reading!
-My email addy is effisleeps@gmail.com.
+My email addy is effisleeps@gmail.com. 
