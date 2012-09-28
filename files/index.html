@@ -5,63 +5,90 @@
 	
 	<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
 	
-	<style>
-		body {
-			margin:0;
-			background:teal;
-		}
-	</style>
+
 	
 		
 	<script>
 		
-		
-		
-		$(function(){
-				
-			console.log('hello');	
+		if(localStorage.twitterSearch) {
 			
-		});
-		
-				
-		$.ajax({
-		
-			url: 'http://search.twitter.com/search.json?q=zuma&rpp=100&include_entities=true&result_type=mixed&show_user=true',
+			var twitterData = JSON.parse(localStorage.twitterSearch),
+				formattedData = [];
 			
-			dataType:'jsonp',
 			
-			success:function(response){
-				
-				
-				$.each(response, function(i, tweet){
-					console.log(tweet);
+			
+		
+			
+						
+			$.each(twitterData.results, function(index, tweet){
 					
-					var text = tweet['text'];
+					var text = tweet.text;
 					
 					if(tweet.entities.urls){
 						$.each(tweet.entities.urls, function(i, url){
 							text = text.replace(url.url, '<a href="' + url.expanded_url + '">' + url.display_url + '</a>');
 						});
-					}
 					
-					if(text.substr(0,1) === '@'){
-						$('#messages').append('<li>' + text + '</li>');
-					} else if(text.substr(0,2) === 'RT') {
-						$('#retweets').append('<li>' + text + '</li>');
-					} else {
-						$('#tweets').append('<li>' + text + '</li>');
-					}
-					
-				});
-				
-			},			
-			error: function(){
-				console.log("damn. i'm sad");
 			}
 			
-		});
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				//console.log('index: ', index, 'tweet: ', tweet);
+				formattedData.push({
+					text: tweet.text, 
+					from_user_name: tweet.from_user_name
+				
+				});
+			
+			});
+			
+			
+			localStorage.formattedData = JSON.stringify(formattedData);
+			console.log('hooray!');
+			console.log('hooray!');
+			console.log('hooray!');
+			
+						
+			console.log('the list of text', formattedData);
+			
+			
+			console.log(twitterData);
+			
+			
+		
+		} else {
+		
+			$.ajax({
+		
+				url:'http://search.twitter.com/search.json?q=jacob%20zuma&rpp=99&include_entities=true&result_type=mixed',
+				
+				dataType:'jsonp',
+		
+				success: function(response){
+					localStorage.twitterSearch = JSON.stringify(response);
+					console.log('I think that worked')
+				},
+		
+				error: function(error){
+				alert(error);
+				}
+		
+			});
 				
 
+		
+		}
+		
+				
+		
 	
 	</script>
 
@@ -71,6 +98,7 @@
 	<ul id="retweets"></ul>
 	<ul id="tweets"></ul>
 	<ul id="messages"></ul>
+
 
 </body>
 
