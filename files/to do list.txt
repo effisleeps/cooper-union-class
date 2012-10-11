@@ -1,0 +1,25 @@
+
+
+Code to determine:
+
+1. Most Retweeted/replied/Favorited (A combination of these if possible)
+
+2. Search through text for:
+
+Most mentioned words
+
+	minus these words: http://norm.al/2009/04/14/list-of-english-stop-words/
+
+Repeated Urls
+
+4. translations!
+
+3. Drop code in sections as lists
+
+4. Find most official twitter of respective govt and place in section
+
+5. Figure out comment sections
+
+6. Grab info from google searches (if possible) 
+
+7. Integrate major sites somehow (cnn, nytimes, bbc, al jazeera, etc)

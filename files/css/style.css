@@ -1,4 +1,56 @@
-html { font-size:62.5%; }
-h1 { font-size:4rem; line-height:1.1em; margin:35px 10px 0 25px; }
-p { font-size:1.6rem; line-height:1.2em; margin:1em 10px 0 28px; }
-body {background-color: pink; border-top: 10px dotted white; border-bottom: 5px dashed blue;}
+.bodyedit {background-image: url("http://www.canafri.com/leaders/egy.jpg"); background-attachment: fixed;
+}
+
+h2 {font-weight: bold; font-size: 20px; text-transform: uppercase;
+}
+
+.outerwrapper {width: 850px; margin: 0px auto; padding: 0px 20px; 
+}
+
+.maincol {float: left; width:700px;
+}
+
+.infocol {width: 140px; background-color: black; float: left; color: white; font-size: 11px; padding: 5px; height: 1000px;
+}
+
+.headsection {  background-color: rgba(331, 331, 331, 0.2); height: 50px; display: block; width 680px; padding: 10px; font-family: monospace;
+}
+
+.headsection div { color: white; font-weight: 400; font-size: 30px; text-transform: uppercase; clear:none;
+}
+
+.countryoutline img {width: 50px; height: auto;}
+
+.countryinfo {float:left; width: 400px;
+}
+
+.countryinfo div {float: left;
+}
+
+.countryoutline {width: 150px;
+}
+
+.leadername {float: right;}
+
+
+
+ .publisher-anchor-color a {color: white;}
+
+.topsection {width: 700px; float: left;  background-image: url("http://www.canafri.com/leaders/morsi.png");  
+}
+
+.topsection img {width: 100px; }
+
+.twitter-one{width: 130px; float: left; height: 513px; background-color: rgba(231, 331, 331, 0.5); padding: 10px;
+}
+
+.twitter-two {width: 130px; float: left; height: 513px; background-color: rgba(231, 291, 231, 0.5); padding: 10px;
+}
+
+.twitter-three {width: 130px; float: left; height: 513px; background-color: rgba(201, 201, 181, 0.5); padding: 10px;
+}
+
+#disqus_thread {background-color: rgba(31, 31, 31, 0.8); width: 450px; border-top: 1px dotted black;}
+
+.bottomsection {width: 700px; float: left; height: 533px; background-color: rgba(331, 331, 331, 0.2);
+}
