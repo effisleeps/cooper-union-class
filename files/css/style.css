@@ -1,33 +1,53 @@
-.bodyedit {background-image: url("http://www.canafri.com/leaders/egy.jpg"); background-attachment: fixed;
+
+
+h2 {margin-bottom: 10px;}
+
+a {color: #333; text-decoration: none; }
+
+.redwriting {background-color: red; color: red;}
+
+.bluewriting {color: blue;}
+
+.bodyedit {background-image: url("http://www.canafri.com/leaders/nigeria/bkg1.jpg"); background-attachment: fixed; font-family: 'LektonRegular'; 
 }
 
-h2 {font-weight: bold; font-size: 20px; text-transform: uppercase;
+.headmenu {background-color: black; height: 20px;}
+
+.headmenu a {margin-right: 40px;}
+
+.bodyeditb {background-image: url("http://www.canafri.com/leaders/egypt/bkg1.jpg"); background-attachment: fixed; font-family: 'LektonRegular'; 
 }
 
-.outerwrapper {width: 850px; margin: 0px auto; padding: 0px 20px; 
+h2 {font-weight: bold; font-size: 16px; text-transform: uppercase;
 }
 
-.maincol {float: left; width:700px;
+.outerwrapper {width: 750px; margin: 0px auto; padding: 0px 0px 0px 0px; border-right: 1px dotted black; border-left: 1px dotted black;
 }
 
-.infocol {width: 140px; background-color: black; float: left; color: white; font-size: 11px; padding: 5px; height: 1000px;
+.maincol {float: left; width:600px; 
 }
 
-.headsection {  background-color: rgba(331, 331, 331, 0.2); height: 50px; display: block; width 680px; padding: 10px; font-family: monospace;
+.infocol {width: 139px; background-color: rgba(81, 81, 81, 0.8); float: left; color: white; font-size: 11px; padding: 5px; height: 1000px; 
 }
 
-.headsection div { color: white; font-weight: 400; font-size: 30px; text-transform: uppercase; clear:none;
+.headsection {  display: block; width: 140px;  font-family: 'LektonRegular';
+}
+
+.headsection div { color: white; font-weight: 400; font-size: 20px; text-transform: uppercase; 
+}
+
+.headsection a { color: white; font-weight: 400; font-size: 20px; text-transform: uppercase; 
 }
 
 .countryoutline img {width: 50px; height: auto;}
 
-.countryinfo {float:left; width: 400px;
+.countryinfo {float:left; width: 140px; margin-bottom:10px;
 }
 
 .countryinfo div {float: left;
 }
 
-.countryoutline {width: 150px;
+.countryoutline {width: 140px;
 }
 
 .leadername {float: right;}
@@ -35,9 +55,13 @@ h2 {font-weight: bold; font-size: 20px; text-transform: uppercase;
 
 
  .publisher-anchor-color a {color: white;}
+ 
 
-.topsection {width: 700px; float: left;  background-image: url("http://www.canafri.com/leaders/morsi.png");  
+
+.topsection {width: 750px; float: left;  background-image: url("http://www.canafri.com/leaders/nigeria/leader.jpg");  
 }
+
+ .twitter-divs {display: none;}
 
 .topsection img {width: 100px; }
 
@@ -50,7 +74,7 @@ h2 {font-weight: bold; font-size: 20px; text-transform: uppercase;
 .twitter-three {width: 130px; float: left; height: 513px; background-color: rgba(201, 201, 181, 0.5); padding: 10px;
 }
 
-#disqus_thread {background-color: rgba(31, 31, 31, 0.8); width: 450px; border-top: 1px dotted black;}
+#disqus_thread {background-color: rgba(31, 31, 31, 0.8); width: 600px; border-top: 1px dotted black;}
 
-.bottomsection {width: 700px; float: left; height: 533px; background-color: rgba(331, 331, 331, 0.2);
+.bottomsection {width: 750px; float: left; height: 533px; background-color: rgba(1, 1, 1, 0.6);
 }
