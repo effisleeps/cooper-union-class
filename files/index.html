@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="css/style.css">
 		
 			<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+			<script src="js/tweetUtil.js"></script>
 			
 			
 <script>
@@ -16,116 +17,15 @@
 
 				 /* --- Define Global Variables --- */
 
-  				 var tweets; //A relatively global variable to store and retrieve tweets 
 
 
-
-				 /* --- Define Functions --- */
-
-  				 //Function that gets tweets, taking 3 parameters
-  				 // - searchTerm: What phrase to look for
-  				 // - rpp: Results per page
-  				 // - callback: function to happen after a successful retrieval of tweets
-  				 //Example: tweets = getTweets("Cooper Union", 10);
-				 var getTweets = function(searchTerm, rpp, callback) {
-
-				 	//set some defaults
-					if(searchTerm === undefined) {
-						console.log("searchTerm undefined");
-					}
-
-					if(rpp === undefined) {
-						console.log("rpp undefined, setting default to 10");
-						rpp = 10;
-					}
-
-					//construct the url based on the two parameters passed into the function
-					var searchUrl = "http://search.twitter.com/search.json?q=" + searchTerm + "&rpp=" + rpp;
-					console.log("Search url: "+searchUrl);
-
-					//run the ajax query
-					$.ajax({
-
-						// our query URL
-						url: searchUrl,
-
-						// our specified data-type
-						dataType:'jsonp',
-
-						// If the Ajax was successful, use its 'response' to our query to create 'localStorage.twitterSearch'. Remember, 
-						// 'success:function()'' takes an argument, representing the query's response. We can call it whatever we want: 
-						// 'response', 'answer', 'stuffWeAskedFor', etc.
-						success:function(response){
-
-							// Create 'localStorage.twitterSearch' by turning the response into a string value.
-							// This way, we can work with it as text.
-							//localStorage.twitterSearch = JSON.stringify(response);
-
-							//response is the full response object.
-							//response.results is just the tweets from the response object.
-							//response.results.length is performing the length operation on the results array from the response object.
-							console.log("Number of responses:" + response.results.length);
-
-							//use are relatively global tweets variable to store just the tweets from the response.
-							//at this point, tweets is an array of tweets.
-							tweets = response.results;
-
-							//The third optional parameter for this function is a callback function.
-							//Test to see if the variable "callback" has been defined, and is a function.
-							//If it is a function, execute the function, and pass in the response object just in case the function could take advantage of it.
-							if(typeof(callback) === "function") {
-								callback(response);
-								console.log("The ajax request callback function has been fired.");
-							}
-
-						},
-
-						// Send an alert if our Ajax was failed.
-						error: function(){
-							alert('Error, error: does not compute.');
-						}
-
-					});											
-
-				 };
-
-				 //Function to display tweets. 
-				 //Assumes that the tweets parameter passed into it is an array of tweets, as returned from the api.
-				 var displayTweets = function(tweets) {
-
-				 	console.log("displayTweets: attempting to display tweets");
-
-				 	//loop through each tweet to display it
-				 	$.each(tweets, function(index, tweet) {
-
-				 		//output the tweet we're talking about
-				 		console.log(tweet);
-
-				 		//construct html we'd like to wrap around each tweet
-				 		//give each tweet a unique id based on the tweet id
-				 		var tweetHTML = "<li class='tweet' id='" + tweet.id_str + "'>" + tweet.text + "</li>";
-
-				 		//take the tweet html we've constructed, and add it to the DOM
-				 		$(tweetHTML).appendTo("#tweets");
-
-				 	});
-
-				 };
 
 
 
 
 				 /* --- Start setting up the page --- */
 
-				 //create the h2
-				 //add a listener to it for a click event
 		
-				 	getTweets("mohammed morsi", "10");
-				 	console.log("attempting to log tweets:", tweets);
-
-				
-
-				 	console.log("attempting to log tweets:", tweets);
 
 				 	//create a ul to display tweets in, but only if it doesn't already exist
 				 	
@@ -135,40 +35,67 @@
 
 					//create a new variable to store the most recent tweet ID in					
 					var lastTweetID;
+					
+					//make a listener for countryname in url (e.g: pulling "egypt" from canafri.com/leaders/egypt)
+					//replace country variable with country name throughout the page
+					//replace leader variable with corresponding leader name throughout the page
 
-
-
-					//create a scheduled task that happens every 10 seconds										
-					var schedueldQuery = setInterval(function () {
-
-						console.log("scheduled action happened");
+					
 						
-						displayTweets(tweets);
+					//get last 100 tweets
+					
+					tweetUtil.getTweets("mohammed", "10", function(tweets){
+						console.log("the thing we're looking at:", tweets.results);
+						tweetUtil.displayTweets(tweets.results);
+					});
+					
+						console.log (tweetUtil.tweets);
+					
+					
+					//get tweet text and Find most common words
+					
+				
+					//Subtract these words
+					http://norm.al/2009/04/14/list-of-english-stop-words/
+					
+					//Place 5 most common words in div with hyperlink to twittersearch
+					
+					
+					
+					//get last 100 tweets
+					
+					//get tweet text and Find most common Urls
+						
+					//Place 5 most common links in div with hyperlink to twittersearch
+				
+				
+				
+					
+					//get last 100 tweets
+					
+					
+					//get retweets
+					
+					//get mentions
+					
+					//get replies
+					
+					//add retweets mentions and replies
+					
+					//place top ten tweet scorers in div
+					
+					
+					
+					//get last 100 tweets with the geographic location of country - or - 
+					
+					//search twitter for geographic locations and leader search query
+					
+					//display top 10 tweets
+					
+					
+					
 
-						//get tweets, but use a callback function!
-						getTweets("mohammed morsi", "10", function() {
-
-							console.log(lastTweetID, tweets[0].id_str);
-							//tweets is an array
-							//tweets[0] is the first item in the array
-							//tweets[0].id_str is the id of the first item in the array
-
-							//see if the last stored tweetID is equivalent to the most recent tweet id
-							if(lastTweetID !== tweets[0].id_str) {
-								//if stored tweet id and most recent tweet id do not match
-								//then the tweets that were returned from the most recent search are new
-								//display the new tweets
-								
-							}
-
-							//store the most recent tweet id, for the next time this function runs (in 10 more seconds)
-							lastTweetID = tweets[0].id_str;
-
-							console.log("the fancy callback happened", tweets);
-						});
-
-					}, 10000);				 	
-		
+			
 				
 				
 
@@ -192,13 +119,11 @@ $('.twitter-divs a').on('click', function(){ $(this).addClass('redwriting')
 	
 	<script type="text/javascript">
 
-var africanCountries=new Array("Algeria","Angola","Benin","Botswana","Burkina Faso","Burundi","Cameroon","Cape Verde","Central African Republic Chad","Comoros","Democratic Republic of Congo","Republic of the Congo","CÃ´te dIvoire","Djibouti","Egypt","Equatorial Guinea","Eritrea","Ethiopia","Gabon","Gambia","Ghana","Guinea","Guinea-Bissau Kenya","Lesotho","Liberia","Libya","Madagascar","Malawi","Mali","Mauritania","Mauritius","Morocco","Mozambique","Namibia","Niger","Nigeria","Rwanda","SÃ£o TomÃ© and Principe","Senegal","Seychelles","Sierra Leone","Somalia","South Africa","South Sudan","Sudan","Swaziland","Tanzania","Togo","Tunisia","Uganda","Zambia","Zimbabwe","Somaliland","Sahrawi Arab Democratic Republic");
+//var africanCountries=new Array("Algeria","Angola","Benin","Botswana","Burkina Faso","Burundi","Cameroon","Cape Verde","Central African Republic Chad","Comoros","Democratic Republic of Congo","Republic of the Congo","CÃ´te dIvoire","Djibouti","Egypt","Equatorial Guinea","Eritrea","Ethiopia","Gabon","Gambia","Ghana","Guinea","Guinea-Bissau Kenya","Lesotho","Liberia","Libya","Madagascar","Malawi","Mali","Mauritania","Mauritius","Morocco","Mozambique","Namibia","Niger","Nigeria","Rwanda","SÃ£o TomÃ© and Principe","Senegal","Seychelles","Sierra Leone","Somalia","South Africa","South Sudan","Sudan","Swaziland","Tanzania","Togo","Tunisia","Uganda","Zambia","Zimbabwe","Somaliland","Sahrawi Arab Democratic Republic");
 
-console.log(africanCountries[1]);
-
-for (i=0;i<54;i++) 
+//for (i=0;i<54;i++) 
 {
-console.log(i, africanCountries[i]);
+//console.log(i, africanCountries[i]);
 }
 
 </script>
@@ -270,11 +195,13 @@ $("<img src= 'http://www.canafri.com/leaders/egypt/outline.png'/>").appendTo(".c
             			var disqus_shortname = 'ourleaders'; // required: replace example with your forum shortname
 
             			/* * * DON'T EDIT BELOW THIS LINE * * */
+            			/*
             			(function() {
                 			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
                 			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
                 			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             			})();
+            			*/
        					</script>
         				<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         				<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
@@ -349,12 +276,14 @@ $("<img src= 'http://www.canafri.com/leaders/egypt/outline.png'/>").appendTo(".c
         var disqus_shortname = 'ourleaders'; // required: replace example with your forum shortname
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
+        /*
         (function () {
             var s = document.createElement('script'); s.async = true;
             s.type = 'text/javascript';
             s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
             (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
         }());
+        */
         </script>
 
     <div style="clear:both;"></div>

@@ -1,0 +1,54 @@
+0 Algeria 
+1 Angola 
+2 Benin 
+3 Botswana 
+4 Burkina Faso 
+5 Burundi 
+6 Cameroon 
+7 Cape Verde 
+8 Central African Republic Chad 
+9 Comoros 
+10 Democratic Republic of Congo 
+11 Republic of the Congo 
+12 CÃ´te dIvoire 
+13 Djibouti 
+14 Egypt 
+15 Equatorial Guinea 
+16 Eritrea 
+17 Ethiopia 
+18 Gabon 
+19 Gambia 
+20 Ghana 
+21 Guinea 
+22 Guinea-Bissau Kenya 
+23 Lesotho 
+24 Liberia 
+25 Libya 
+26 Madagascar 
+27 Malawi 
+28 Mali 
+29 Mauritania 
+30 Mauritius 
+31 Morocco 
+32 Mozambique 
+33 Namibia 
+34 Niger 
+35 Nigeria 
+36 Rwanda 
+37 SÃ£o TomÃ© and Principe 
+38 Senegal 
+39 Seychelles 
+40 Sierra Leone 
+41 Somalia 
+42 South Africa 
+43 South Sudan 
+44 Sudan 
+45 Swaziland 
+46 Tanzania 
+47 Togo 
+48 Tunisia 
+49 Uganda 
+50 Zambia 
+51 Zimbabwe 
+52 Somaliland 
+53 Sahrawi Arab Democratic Republic 
