@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Get Example</title>
+		<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+		<script src="js/mongoUtil.js"></script>
+		<script>
+
+			$(document).ready(function() {
+				mongoUtil.config({
+					"db":"apiTest",
+					"appID":"heroku_app7962732",
+					"apiKey":"5089c4b4e4b0d0aee183c5d4"
+				});
+
+
+				var results = function() {
+					console.log(results);
+				};
+
+				mongoUtil.get(function(){
+					results();
+				});
+
+			});
+
+		</script>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/style.css">
+  	</head>
+	<body>
+		<h1>Testing</h1>	
+	</body>
+</html>
