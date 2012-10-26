@@ -23,3 +23,8 @@ Repeated Urls
 6. Grab info from google searches (if possible) 
 
 7. Integrate major sites somehow (cnn, nytimes, bbc, al jazeera, etc)
+
+https://www.mongolab.com/api/1/databases/heroku_app7962732/collections?apiKey=5089c4b4e4b0d0aee183c5d4
+https://www.mongolab.com/databases/heroku_app7962732
+
+https://www.mongolab.com/databases/heroku_app7962732/collections/apiTest
