@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Data Example</title>
+		<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+		<script>
+
+			$(document).ready(function() {
+				var data = $("h1");
+				console.log(data);
+
+				var random = Math.random();
+
+				$.ajax({
+
+					// url:'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/test?apiKey=5064eef0e4b088b309ccce2f',
+					url:'https://www.mongolab.com/api/1/databases/heroku_app7962732/collections?apiKey=5089c4b4e4b0d0aee183c5d4',
+					dataType:'json',
+					contentType:'application/json',
+					type:'DELETE',
+					data:'{"newKey":'+random+'}',
+					success:function(response){
+
+						console.log(response);
+					},
+					error: function(error) {
+						console.log(error);
+					}
+
+				});
+				//
+				$.ajax({
+
+					// url:'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/test?apiKey=5064eef0e4b088b309ccce2f',
+					url:'https://www.mongolab.com/api/1/databases/heroku_app7962732/collections?apiKey=5089c4b4e4b0d0aee183c5d4',
+					dataType:'json',
+					success:function(response){
+						console.log(response);
+						$("h1").after('<h2>'+response[0].newKey+'</h2>');
+
+					},
+					error: function(error) {
+						console.log(error);
+					}
+
+				});
+				//https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/test?apiKey=5064eef0e4b088b309ccce2f
+
+			});
+
+		</script>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/style.css">
+  	</head>
+	<body>
+		<h1>Valid h1 selection</h1>	
+	</body>
+</html>
