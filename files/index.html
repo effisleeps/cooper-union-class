@@ -1,289 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+	
 		<meta charset="utf-8">
 		<title>Our Leaders</title>
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/style.css">
 		
-			<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
-			<script src="js/tweetUtil.js"></script>
-			
-			
-<script>
-
-			$(document).ready(function(){
-
-
-				 /* --- Define Global Variables --- */
-
-
-
-
-
-
-
-				 /* --- Start setting up the page --- */
-
+		<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+		<script src="js/countryData.js"></script>
+		<script src="js/tweetUtil.js"></script>
+		<script src="js/wordSearch.js"></script>
 		
-
-				 	//create a ul to display tweets in, but only if it doesn't already exist
-				 	
 	
-						$("<ul id='tweets' />").appendTo(".twitter-one");
-			
+		<script>
+		
+			//Ok
+			//Compile THIS data:
+			//Country Outlines -cut from canafry thing
+			//
+				
 
-					//create a new variable to store the most recent tweet ID in					
-					var lastTweetID;
-					
-					//make a listener for countryname in url (e.g: pulling "egypt" from canafri.com/leaders/egypt)
-					//replace country variable with country name throughout the page
-					//replace leader variable with corresponding leader name throughout the page
+				
+	
+			/* --- Page Variables --- */
+				var x = location.search.substr(1);
+				splitUrl = x.split("=");
 
-					
-						
-					//get last 100 tweets
-					
-					tweetUtil.getTweets("mohammed", "10", function(tweets){
-						console.log("the thing we're looking at:", tweets.results);
-						tweetUtil.displayTweets(tweets.results);
+
+				//alert("Key '" + y[0] + "' has the content '" + y[1]+"'")
+				var countryName= splitUrl[1];
+				console.log (countryName);
+				
+				country = window[countryName];
+				console.log(country);
+				leaderName = country.leaderName,
+				countryName = country.name,
+				leaderNameLow = leaderName.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+					return letter.toLowerCase();
 					});
-					
-						console.log (tweetUtil.tweets);
-					
-					
-					//get tweet text and Find most common words
-					
-				
-					//Subtract these words
-					http://norm.al/2009/04/14/list-of-english-stop-words/
-					
-					//Place 5 most common words in div with hyperlink to twittersearch
-					
-					
-					
-					//get last 100 tweets
-					
-					//get tweet text and Find most common Urls
-						
-					//Place 5 most common links in div with hyperlink to twittersearch
-				
-				
-				
-					
-					//get last 100 tweets
-					
-					
-					//get retweets
-					
-					//get mentions
-					
-					//get replies
-					
-					//add retweets mentions and replies
-					
-					//place top ten tweet scorers in div
-					
-					
-					
-					//get last 100 tweets with the geographic location of country - or - 
-					
-					//search twitter for geographic locations and leader search query
-					
-					//display top 10 tweets
-					
-					
-					
-
 			
-				
-				
+			/* --- wikipedia LeaderName fix --- */
+			
+			leaderNameSplit = leaderName.split(' ');
+            leaderNameLowSplit = leaderNameLow.split(' ');
 
-$('.twitter-divs').fadeIn(2000, function() {
-        // Animation complete
-      });//.addClass('redwriting').addClass('bluewriting');
+            if (leaderNameSplit[2] === undefined) {
+            	wikiLeaderName = leaderNameSplit[0] + '_' + leaderNameSplit[1]  
+            }
+            else if (leaderNameSplit[3] === undefined && leaderName[2] !== undefined ) {
+            	wikiLeaderName = leaderNameSplit[0] + '_' + leaderNameSplit[1] + '_' + leaderNameSplit[2] 
+            }
+            else if (leaderNameSplit[4] === undefined && leaderName[3] !== undefined ) {
+            	wikiLeaderName = leaderNameSplit[0] + '_' + leaderNameSplit[1] + '_' + leaderNameSplit[2] + '_' + leaderNameSplit[3] 
+            }
+            else if (leaderNameSplit[5] === undefined && leaderName[4] !== undefined ) {
+            	wikiLeaderName = leaderNameSplit[0] + '_' + leaderNameSplit[1] + '_' + leaderNameSplit[2] + '_' + leaderNameSplit[3] + leaderNameSplit[4] 
+            }
+            else { 
+            	wikiLeaderName = leaderNameSplit[0] + '_' + leaderNameSplit[1]  
+            };
+                        
+			/* --- Resize scripts --- */
+			
+			$(window).resize(function() {
+			
+				var windowWidth = $(window).width(); 
+				
+				var margeWidth = ((windowWidth - 750) / 2) + 'px' ;
+				
+				$('.headmenu').css({'width' : margeWidth})
+			
+			});
+			
+			var schedueledResize = setInterval(function () {
+			
+				var topHeight = $(".infocol").height() + 35 + 'px'; 
+				$('.twitter-one, .twitter-two, .twitter-three').css({'height' : topHeight})
+			 
+			}, 200);	
+			
+			
+			
+			/* --- Document Ready --- */
+			$(document).ready(function(){
+				
+				//Form submission
+				$('#form').submit(function(){
 
-$('.twitter-divs a').on('click', function(){ $(this).addClass('redwriting')
-});
- 
- $('.twitter-divs').on('click', function(){ $('.bodyedit').addClass('bodyeditb').removeClass('bodyedit')
-});
- 
-$('.countryoutline').prepend('<img id="theImg" src="http://www.canafri.com/leaders/egypt/outline.png" />');
+					var countrytwo = $(this).find("#entry").val();
+
+					console.log("data to post:", countrytwo);
+					
+					var country = country.replace(country, countrytwo)
+				
+					return false;
+				});
+
+				/* --- Page Variables --- */
+				$('.bodyedit').css('background-image', 'url("flagPics/' + countryName + '.jpg")');
+			 	$('.topsection').css('background-image', 'url("leaderPics/' + countryName + '.jpg")');
+				
+				/* --- Wikipedia --- */
+				
+				$.ajax({
+	
+					url: 'http://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=' + wikiLeaderName + '&rvprop=content&iwurl=&format=json&rvsection=0&rvparse=1',
+		
+					dataType:'jsonp',
+		
+					success:function(response){
+		
+						var wiki;
+						
+						$.each(response.query.pages, function(key, value){
+							wiki= value.revisions[0]['*'];
+							return false;
+						});
+							
+					$('.wikicol').html(wiki);
+					
+					/* --- Wiki CSS edits --- */
+					$('.wikicol table').css("width", "");
+					$('.wikicol th','.wikicol td').css("background-color", "").css("font-weight", "bold");
+						
+					if(typeof(callback) === "function") {
+						callback(response);
+						console.log("The Wiki ajax request callback function has been fired.");
+						}
+		
+					},
+		
+					// Send an alert if our Ajax was failed.
+					error: function(){
+						alert('Error, error: does not compute.');
+					}
+	
+				});		
+		
+				/* --- Append Country/Leader Info --- */
+			 
+				$(".leadername").append("<a href='http://en.wikipedia.org/wiki/" + leaderName + "'>" + leaderName + "</a>");
+				$(".countryname").append("<a href='http://en.wikipedia.org/wiki/" + countryName + "'>" + countryName + "</a>");
+				$('.countryoutline').prepend('<img id="theImg" src="http://www.canafri.com/leaders/egypt/outline.png" />');
+				
+				/* --- Append Tweets --- */
+			 	$(".twitter-two").append( '<a href="#"><h2>Tweets From ' + countryName + '</h2></a>');
+				$("<ul id='tweets' />").appendTo(".twitter-one");
+				$("<ul id='ltweets' />").appendTo(".twitter-two");
+				$("<ul id='stweets' />").appendTo(".twitter-twohalf");
+				$("<p id='ctweets' />").appendTo(".bottomsection");
+						
+				//Create a new variable to store the most recent tweet ID in					
+				var lastTweetID;
+				
+				//Top Tweets
+				tweetUtil.getTweets('"' + leaderNameLow +  '"', "99", function(tweets){
+					tweetUtil.displayTweets(tweets.results);
+					});
+				//Social Tweets
+				tweetUtil.getTweets('"' + leaderNameLow +  '"', "5", function(tweets){
+				
+					tweetUtil.socialTweets(tweets.results);
+					});
+				//Local Tweets
+				tweetUtil.getLtweets(('"' + leaderNameLow +  '"'), "4", function(ltweets){
+				
+					tweetUtil.localTweets(ltweets.results);
+					});
+				//Combined Tweet Text (For Searching)
+				tweetUtil.getTweets('"' + leaderNameLow +  '"', "99", function(tweets){
+					
+					tweetUtil.combineTweets(tweets.results);
+					});
+	
+				/* --- Random Styles --- */
+			
+				$('.twitter-divs').fadeIn(2000, function() {
+				// Animation complete
+					});//.addClass('redwriting').addClass('bluewriting');
+		
+				$('.twitter-divs a').on('click', function(){ $(this).addClass('redwriting')
+					});
+		 
+				$('.twitter-divs').on('click', function(){ $('.bodyedit').addClass('bodyeditb').removeClass('bodyedit')
+					});
+		 
+	
 			}); // end of document.ready jquery block
-
-
-	</script>
-	
-
-	
-	<script type="text/javascript">
-
-//var africanCountries=new Array("Algeria","Angola","Benin","Botswana","Burkina Faso","Burundi","Cameroon","Cape Verde","Central African Republic Chad","Comoros","Democratic Republic of Congo","Republic of the Congo","CÃ´te dIvoire","Djibouti","Egypt","Equatorial Guinea","Eritrea","Ethiopia","Gabon","Gambia","Ghana","Guinea","Guinea-Bissau Kenya","Lesotho","Liberia","Libya","Madagascar","Malawi","Mali","Mauritania","Mauritius","Morocco","Mozambique","Namibia","Niger","Nigeria","Rwanda","SÃ£o TomÃ© and Principe","Senegal","Seychelles","Sierra Leone","Somalia","South Africa","South Sudan","Sudan","Swaziland","Tanzania","Togo","Tunisia","Uganda","Zambia","Zimbabwe","Somaliland","Sahrawi Arab Democratic Republic");
-
-//for (i=0;i<54;i++) 
-{
-//console.log(i, africanCountries[i]);
-}
-
-</script>
-
-
-
-  	
-
-
-
-		
-
-
-
-
-</head>
-
-<body>
-
-	<div class = "bodyedit">
-	
-		<div class = "headmenu">
-		
-		<a href='#'>About</a>
-			<a href='#'>Twitter</a>
-				<a href='#'>Canafri Home</a>
-					<a href='#'>Map</a>
-						<a href='#'>Search Country</a>
-							<a href='#'>Donate</a>
-		</div>
-
-		<div class = "outerwrapper">
-    
-			<article class = "maincol">
-
 				
-       			<section class = "topsection">
-       			<div class="twitter-divs">
-        
-    				<div class= "twitter-one">
-    				<a href="#"><h2>Top Tweets </h2></a>
-    				<p>Blah blah blah </p>
-    				</div>
-    
-    				<div class= "twitter-two">
-    				<a href="#"><h2>Most Mentioned Words </h2></a>
-    				<p> Blah blah blah </p>
-   					</div>
-    
-     				<div class= "twitter-three">
-   					<a href="#"><h2>URLS To Watch</h2></a>
-    				<p>Blah blah blah </p>
-    				</div>
-    				</div>
-    
-   
-        			<div style="clear:both;"></div>
-        		</section>
-    
-       			<section class = "bottomsection">
-        
-                	<div id="disqus_thread"></div>
-        				<script type="text/javascript">
-            			/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            			var disqus_shortname = 'ourleaders'; // required: replace example with your forum shortname
+					
+	
+		</script>
+		
 
-            			/* * * DON'T EDIT BELOW THIS LINE * * */
-            			/*
-            			(function() {
-                			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            			})();
-            			*/
-       					</script>
-        				<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        				<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-        
-        
-        		</section>
-        
-        
-        
-           		<div style="clear:both;"></div>
-      		</article>
-      		<article class = "infocol">
-      		
-      		<section class = "headsection">
+	</head>
 
-   					<div class ="countryinfo">
-    
-       					<div class = "countryoutline">
-        			
-        				</div>
+	<body>
 
-        				<div class = "countryname">
-        				<a href='#'>nigeria</a>
-        				</div>
+		<div class = "bodyedit">
+		
+			<div class = "headmenu">
+			
+			
+	<form action="" id="form">
+			<input type="text" id="entry" name="entry" value="" placeholder="data to store"/>
+		</form>
+			
+			
+				<a href='#'>About</a>
+				<a href='#'>Twitter</a>
+				<a href='#'>Canafri Home</a>
+				<a href='#'>Map</a>
+				<a href='#'>Search Country</a>
+				<a href='#'>Donate</a>
+									
+			</div>
+			
+			
+	
+			<div class = "outerwrapper">
+			
+			
+		
+				<article class = "maincol">
+				
+	
+					
+					<section class = "topsection">
+					
+						<article class = "infocol">
+						
+					
+							<section class = "headsection">
+		
+								<div class ="countryinfo">
+				
+								<div class = "countryoutline">
+								</div>
+			
+								<div class = "countryname">
+								</div>
+			
+								</div>
+			
+								<div class = "leadername">
+								
+								</div>
+								<div style='clear:both'></div>
+		
+							</section>
+						
+							<article class = "wikicol">
+							</article>
+		
+		
+					
+						</article>
+							
+						
+						
+				
+						<div class="twitters">
+						
+						
+						
+							<div class="twitter-divs">
+				
+								<div class= "twitter-one">
+							
+								<a href="#"><h2>Top Tweets </h2></a>
+								
+								</div>
+			
+		   
+								<div class= "twitter-two">
+									
+									<div class= "twitter-twohalf">
+									<a href="#"><h2>Social Tweets </h2></a>
+									</div>
+								</div>
+							
+								<div class= "twitter-three">
+									<a href="#"><h2>official Twitter </h2></a>
+									<div class= "tweetstudies">
+						
+										<div class ="topwords">
+											<h4>Top Words Mentioned</h4>
+										</div>
+						
+						
+										<div class = "topurls">
+											<h4>Top URLS Mentioned</h4>
+											<a href="#">http://t.co/IQDnoAwD</a>
+										</div>
+										
+										<div class = "poptweets">
+											<h4>Popular Tweeters</h4>
+											<a href="#">Man On Wire</a>
+											<a href="#">Jeezubs</a>
+											<a href="#">Cheesy Boy</a>
+										</div>
+						
+									</div>
+						
+								</div>
+							
+							</div>
+						
+						 
+					
+							
+						</div>			
+			
+						<div class = "tweetmenu">
+							<a href='#'>About</a>
+							<a href='#'>Twitter</a>
+							<a href='#'>Canafri Home</a>
+							<a href='#'>Map</a>
+							<a href='#'>Search Country</a>
+							<a href='#'>Donate</a>
+						</div>
+					
+		 
+			
+		   
+						<div style="clear:both;"></div>
+						
+					</section>
+		
+		
+					<section class = "bottomsection">
+					
+					
+					
+			
+							<div id="disqus_thread"></div>
+							<script type="text/javascript">
+							/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+							var disqus_shortname = 'ourleaders'; // required: replace example with your forum shortname
+	
+							/* * * DON'T EDIT BELOW THIS LINE * * */
+							/*
+							(function() {
+								var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+								dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+								(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+							})();
+							*/
+							</script>
+							<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+							<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+			
+			
+					</section>
+			
+			
+			
+					<div style="clear:both;"></div>
+					
+				</article>
+			
+		
+				
+			
+	
+		
+				<script type="text/javascript">
+			/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+			var disqus_shortname = 'ourleaders'; // required: replace example with your forum shortname
+	
+			/* * * DON'T EDIT BELOW THIS LINE * * */
+			/*
+			(function () {
+				var s = document.createElement('script'); s.async = true;
+				s.type = 'text/javascript';
+				s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+				(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+			}());
+			*/
+			</script>
+			
+			<div style="clear:both;"></div>
+			</div>
+	
+		<div style="clear:both;"></div>
+		</div>
+		
+	</body>
 
-    				</div>
-
-
-
-        			<div class = "leadername">
-        			<a href='#'>Mohammed Morsi</a>
-        			</div>
-			<div style='clear:both'></div>
-
-
-    			</section>
-
-      	<h3>Resources</h3>
-      	      	<p><a href='http://en.wikipedia.org/wiki/Mohamed_Morsi'>Wikipedia</a>
-      	      	</p><p><a href='http://en.wikipedia.org/wiki/Mohamed_Morsi'>nigeria Wikipedia</a>
-      	<a href='https://www.cia.gov/library/publications/the-world-factbook/geos/eg.html'>Cia World Factbook</a></p>
-				Lorem ipsum dolor sit amet, cras ut, justo quos in, metus fuga.
-				Tempor imperdiet, vestibulum tristique ipsa, nisl parturient.
-				Pharetra semper a, sollicitudin velit turpis, sodales habitant.
-				Nam pede tempus, justo sed pharetra, pariatur nec.
-				Ac commodo mauris, lectus purus.
-				Amet nunc wisi.
-				Quisque dolor consequatur, convallis viverra suspendisse.
-				Nisl etiam, pretium morbi eget, velit vivamus tempor.
-				In vitae, incididunt integer eget, wisi mauris adipisicing.
-				Lacus id, cras eget, porttitor erat.
-				Urna ante urna, purus ullamcorper ut, iaculis sed.
-				Id tortor.
-				Non urna quis, aliquam proin tellus, at id nibh.
-				Ante vitae aenean.
-				Class aliquet egestas, nisl mauris sed, risus proin provident.
-				Praesent mattis.
-				Justo qui, purus adipiscing orci.
-				Ipsum penatibus.
-				Tellus gravida in, facilisis ipsum.
-				Eget sed, lectus nulla vel.
-      		
-      		
-      		</article>
-    
-    		
-    	
-
-    
-            <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'ourleaders'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        /*
-        (function () {
-            var s = document.createElement('script'); s.async = true;
-            s.type = 'text/javascript';
-            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-        */
-        </script>
-
-    <div style="clear:both;"></div>
-    	</div>
-</body>
 
 </html>

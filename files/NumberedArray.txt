@@ -1,54 +1,218 @@
-0 Algeria 
-1 Angola 
-2 Benin 
-3 Botswana 
-4 Burkina Faso 
-5 Burundi 
-6 Cameroon 
-7 Cape Verde 
-8 Central African Republic Chad 
-9 Comoros 
-10 Democratic Republic of Congo 
-11 Republic of the Congo 
-12 CÃ´te dIvoire 
-13 Djibouti 
-14 Egypt 
-15 Equatorial Guinea 
-16 Eritrea 
-17 Ethiopia 
-18 Gabon 
-19 Gambia 
-20 Ghana 
-21 Guinea 
-22 Guinea-Bissau Kenya 
-23 Lesotho 
-24 Liberia 
-25 Libya 
-26 Madagascar 
-27 Malawi 
-28 Mali 
-29 Mauritania 
-30 Mauritius 
-31 Morocco 
-32 Mozambique 
-33 Namibia 
-34 Niger 
-35 Nigeria 
-36 Rwanda 
-37 SÃ£o TomÃ© and Principe 
-38 Senegal 
-39 Seychelles 
-40 Sierra Leone 
-41 Somalia 
-42 South Africa 
-43 South Sudan 
-44 Sudan 
-45 Swaziland 
-46 Tanzania 
-47 Togo 
-48 Tunisia 
-49 Uganda 
-50 Zambia 
-51 Zimbabwe 
-52 Somaliland 
-53 Sahrawi Arab Democratic Republic 
+0  Algeria 
+1  Angola 
+2  Benin 
+3  Botswana 
+4  Burkina Faso 
+5  Burundi 
+6  Cameroon 
+7  Cape Verde 
+8  Central African Republic 
+9  Chad 
+10  Comoros 
+11 Democratic Republic of Congo 
+12 Republic of the Congo 
+13 CÃ´te dIvoire 
+14 Djibouti 
+15 Egypt 
+16 Equatorial Guinea 
+17 Eritrea 
+18 Ethiopia 
+19 Gabon 
+20 Gambia 
+21 Ghana 
+22 Guinea 
+23 Guinea-Bissau 
+24 Kenya 
+25 Lesotho 
+26 Liberia 
+27 Libya 
+28 Madagascar 
+29 Malawi 
+30 Mali 
+31 Mauritania 
+32 Mauritius 
+33 Morocco 
+34 Mozambique 
+35 Namibia 
+36 Niger 
+37 Nigeria 
+38 Rwanda 	
+39 Sahrawi Arab Democratic Republic 
+40 SÃ£o TomÃ© and Principe 
+41 Senegal 
+42 Seychelles 
+43 Sierra Leone  
+44 Somalia 
+45 Somaliland 
+46 South Africa
+47 South Sudan 
+48 Sudan 
+49 Swaziland 
+50 Tanzania 
+51 Togo 
+52 Tunisia 
+53 Uganda 
+54 Zambia 
+55 Zimbabwe 
+ 
+ var angola 11.4798, 15.6241
+Angola
+
+8.5150, 2.2325
+Benin
+
+22.9906, 25.1557
+Botswana
+
+12.1204, 1.7841
+Burkina Faso
+
+3.2836, 29.8293
+Burundi
+
+5.1296, 11.4381
+Cameroon
+
+15.1111, 23.6167
+Cape Verde
+
+13.6216, 17.9087
+Chad
+
+5.7735, 19.5969
+Central African Republic
+
+13.6216, 17.9087
+Chad
+
+12.0236, 43.8069
+Comoros
+
+2.6633, 23.8864
+Democratic Republic of the Congo
+
+2.0903, 14.2120
+Congo
+
+7.1317, 5.5230
+Côte d’Ivoire
+
+11.5857, 42.6190
+Djibouti
+
+28.8013, 31.1711
+Egypt
+
+1.9248, 10.1116
+Equatorial Guinea
+
+15.1177, 38.9125
+Eritrea
+
+9.4969, 36.8961
+Ethiopia
+
+0.3799, 11.7572
+Gabon
+
+13.4171, 15.9523
+Gambia
+
+7.4490, 0.9056
+Ghana
+
+10.2716, 11.7188
+Equatorial Guinea
+
+11.8493, 15.2996
+Guinea-Bissau
+
+0.4252, 36.7517
+Kenya
+
+29.5495, 28.1851
+Lesotho
+
+6.3636, 9.4659
+Liberia
+
+29.9569, 15.7461
+Libya
+
+18.3714, 47.5424
+Madagascar
+
+13.8383, 34.4429
+Malawi
+
+14.8128, 5.5030
+Mali
+
+18.6597, 11.7001
+Mauritania
+
+20.1625, 58.2903
+Mauritius
+
+32.7502, 6.1916
+Morocco
+
+18.9296, 35.3244
+Mozambique
+
+21.7391, 17.2146
+Namibia
+
+14.8592, 6.4590
+Niger
+
+7.6219, 6.9743
+Nigeria
+
+2.0241, 29.6695
+Rwanda
+
+0.3176, 6.6688
+São Tomé and Príncipe
+
+14.6943, 15.5953
+Senegal
+
+4.6308, 55.4619
+Seychelles
+
+8.4731, 12.2465
+Sierra Leone
+
+6.0442, 45.7194
+Somalia
+
+29.8191, 25.3499
+South Africa
+
+4.8500, 31.6000
+Southudan
+
+12.4204, 30.6753
+Sudan
+
+26.6474, 31.5516
+Swaziland
+
+5.6944, 36.3223
+Tanzania
+
+8.3357, 1.0495
+Togo
+
+35.4187, 9.9875
+Tunisia
+
+1.1027, 32.3968
+Uganda
+
+13.7195, 28.2433
+Zambia
+
+18.8640, 30.3339
+Zimbabwe
